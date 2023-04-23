@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -23,11 +23,12 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push docker image to Amazon ECR
-      env:
-        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        REPOSITORY: devops/nginx
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+		- name: Build, tag, and push docker image to Amazon ECR
+			env:
+				REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+				REGISTRY_ALIAS: devops
+				REPOSITORY: demo-nginx
+				IMAGE_TAG: ${{ github.sha }}
+			run: |
+				docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+				docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
