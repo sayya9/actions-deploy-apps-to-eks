@@ -3,6 +3,7 @@ name: AWS EKS CI/CD
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-deploy:
