@@ -13,4 +13,14 @@ aws ecr set-repository-policy \
         --policy-text file://devops-nginx-ecr-policy.json \
         --region ap-northeast-1
 ```
+
 ![alt text](pictures/actions-deploy-apps-to-eks1.png)
+
+Add the below repository secrets:
+1. In your repository navigation to Settings > Secrets and variables > Actions
+1. Under "Actions secrets and variables" select `New repository secret`
+
+These secrets AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY should contain 
+an IAM user that has rights to access the ECR and EKS cluster.
+![alt text](pictures/actions-deploy-apps-to-eks2.png)
+
