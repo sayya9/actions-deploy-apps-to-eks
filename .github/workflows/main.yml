@@ -39,6 +39,7 @@ jobs:
         docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     env:
       CLUSTER_REGION: us-east-1
@@ -54,6 +55,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.ECR_REGION }}
 
-    - name: KUBECONFIG
+    - name: Create kubeconfig file
       run: |
         aws eks update-kubeconfig --region ${{ env.CLUSTER_REGION }} --name ${{ env.CLUSTER_NAME }}
