@@ -68,6 +68,7 @@ jobs:
         REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         REPOSITORY: devops-nginx
         IMAGE_TAG: latest
+        RELEASE: devops-nginx
       run: |
         envsubst < helm/${{ env.REPOSITORY }}/values.yaml | \
-        helm upgrade -i -n github-actions -f - helm/${{ env.REPOSITORY  }}
+        helm upgrade -i -n github-actions -f - ${{ RELEASE }} helm/${{ env.REPOSITORY  }}
