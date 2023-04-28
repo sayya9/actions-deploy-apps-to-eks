@@ -71,3 +71,4 @@ jobs:
         RELEASE: devops-nginx
       run: |
         envsubst < helm/${{ env.REPOSITORY }}/values.yaml | helm upgrade -i --create-namespace -n github-actions -f - ${{ env.RELEASE }} helm/${{ env.REPOSITORY  }}
+      shell: bash
