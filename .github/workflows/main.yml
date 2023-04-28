@@ -71,4 +71,4 @@ jobs:
         RELEASE: devops-nginx
       run: |
         envsubst < helm/${{ env.REPOSITORY }}/values.yaml | \
-        helm upgrade -i -n github-actions -f - ${{ RELEASE }} helm/${{ env.REPOSITORY  }}
+        helm upgrade -i -n github-actions -f - ${{ env.RELEASE }} helm/${{ env.REPOSITORY  }}
