@@ -70,4 +70,4 @@ jobs:
     - name: Helm deploy
       run: |
         envsubst < helm/${{ env.REPOSITORY }}/values.yaml | \
-        helm upgrade -i -n github-actions -f - .
+        helm upgrade -i -n github-actions -f - helm/${{ env.REPOSITORY  }}
