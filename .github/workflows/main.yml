@@ -70,7 +70,4 @@ jobs:
         IMAGE_TAG: latest
         RELEASE: devops-nginx
       run: |
-        # envsubst < helm/${{ env.REPOSITORY }}/values.yaml | \
-        # helm upgrade -i --create-namespace -n github-actions -f - \ 
-        # ${{ env.RELEASE }} helm/${{ env.REPOSITORY  }}
-        helm version
+        envsubst < helm/${{ env.REPOSITORY }}/values.yaml | helm upgrade -i --create-namespace -n github-actions -f - ${{ env.RELEASE }} helm/${{ env.REPOSITORY  }}
