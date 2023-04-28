@@ -59,15 +59,15 @@ jobs:
       run: |
         aws eks update-kubeconfig --region ${{ env.CLUSTER_REGION }} --name ${{ env.CLUSTER_NAME }}
 
-    - name: Extract the URL for the private registry
-      env:
-        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        REPOSITORY: devops-nginx
-        IMAGE_TAG: latest
+    - name: Login to Amazon ECR to extract the registry URL
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Helm deploy
+      env:
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: devops-nginx
+        IMAGE_TAG: latest
       run: |
         envsubst < helm/${{ env.REPOSITORY }}/values.yaml | \
         helm upgrade -i -n github-actions -f - helm/${{ env.REPOSITORY  }}
