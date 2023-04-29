@@ -20,7 +20,7 @@ aws ecr set-repository-policy \
   1. Under "Actions secrets and variables" select `New repository secret`
 
 These secrets AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY should contain 
-an IAM user that has rights to access the ECR and EKS cluster.
+an IAM user that has rights to access the ECR and the EKS cluster.
 ![alt text](pictures/actions-deploy-apps-to-eks2.png)
 
 ## Create a helm chart from scratch
