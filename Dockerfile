@@ -1,3 +1,2 @@
-FROM ubuntu:22.04
-RUN apt-get -y update
-RUN apt-get -y install curl
+FROM nginx:1.23-alpine
+RUN apk add --no-cache vim
