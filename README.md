@@ -68,7 +68,7 @@ git push
 ![alt text](pictures/actions-deploy-apps-to-eks5.png)
 
 ## Query the EKS cluster
-Execute these commands to check pod status:
+Execute these commands to check the status of relevant pods:
 ```
 kubectl get po -n github-actions
 helm ls -n github-actions
