@@ -48,3 +48,31 @@ devops-nginx/
 │       └── test-connection.yaml
 └── values.yaml
 ```
+
+## Test the Github Actions workflows by committing
+Whenever you push changes to Github, the workflow would run as it has the event below that triggers the workflow.
+```
+push:
+  branches: [ main ]
+```
+
+Making a commitment to the repository, and we need to push to Github to trigger the workflow:
+```
+git add .
+git commit -m "test workflow"
+git push
+```
+
+![alt text](pictures/actions-deploy-apps-to-eks3.png)
+![alt text](pictures/actions-deploy-apps-to-eks4.png)
+![alt text](pictures/actions-deploy-apps-to-eks5.png)
+
+## Query the EKS cluster
+Execute these commands to check pod status:
+```
+kubectl get po -n github-actions
+helm ls -n github-actions
+```
+
+![alt text](pictures/actions-deploy-apps-to-eks6.png)
+![alt text](pictures/actions-deploy-apps-to-eks7.png)
